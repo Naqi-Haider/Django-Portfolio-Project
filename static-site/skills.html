@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Naqi Haider - Skills">
+  <title>Naqi Haider | Skills</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-brand">Naqi Haider</a>
+      <ul class="navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="skills.html" class="active">Skills</a></li>
+        <li><a href="experience.html">Experience</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section class="page-section skills-page">
+      <div class="skills-container">
+        <div class="skills-content">
+          <h1 class="section-title">Skills</h1>
+
+          <div class="content-item">
+            <h3 class="item-title">Programming Languages</h3>
+            <div class="skills-list">
+              <span class="skill-item" data-skill="python">Python</span>
+              <span class="skill-item" data-skill="javascript">JavaScript</span>
+              <span class="skill-item" data-skill="html">HTML</span>
+              <span class="skill-item" data-skill="css">CSS</span>
+              <span class="skill-item" data-skill="sql">SQL</span>
+            </div>
+          </div>
+
+          <div class="content-item">
+            <h3 class="item-title">Frameworks & Libraries</h3>
+            <div class="skills-list">
+              <span class="skill-item" data-skill="django">Django</span>
+              <span class="skill-item" data-skill="react">React</span>
+              <span class="skill-item" data-skill="nodejs">Node.js</span>
+              <span class="skill-item" data-skill="express">Express.js</span>
+            </div>
+          </div>
+
+          <div class="content-item">
+            <h3 class="item-title">Tools & Technologies</h3>
+            <div class="skills-list">
+              <span class="skill-item" data-skill="git">Git</span>
+              <span class="skill-item" data-skill="github">GitHub</span>
+              <span class="skill-item" data-skill="vscode">VS Code</span>
+              <span class="skill-item" data-skill="mongodb">MongoDB</span>
+              <span class="skill-item" data-skill="sqlite">SQLite</span>
+            </div>
+          </div>
+
+          <div class="content-item">
+            <h3 class="item-title">Soft Skills</h3>
+            <div class="skills-list">
+              <span class="skill-item" data-skill="problem-solving">Problem Solving</span>
+              <span class="skill-item" data-skill="team-collaboration">Team Collaboration</span>
+              <span class="skill-item" data-skill="communication">Communication</span>
+              <span class="skill-item" data-skill="time-management">Time Management</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-modal hidden" id="skillModal">
+          <h3 class="modal-title" id="modalTitle"></h3>
+          <p class="modal-description" id="modalDescription"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Naqi Haider | F2022266523</p>
+  </footer>
+
+  <script>
+    const skillDescriptions = {
+      'python': {
+        title: 'Python',
+        description: 'Proficient in Python for web development, scripting, and automation. Experience with Django framework for building web applications, data manipulation, and working with APIs.'
+      },
+      'javascript': {
+        title: 'JavaScript',
+        description: 'Strong knowledge of modern JavaScript (ES6+) including async/await, DOM manipulation, and event handling. Used for both frontend interactivity and backend development with Node.js.'
+      },
+      'html': {
+        title: 'HTML',
+        description: 'Solid understanding of semantic HTML5, accessibility best practices, and proper document structure. Experience building responsive layouts and forms.'
+      },
+      'css': {
+        title: 'CSS',
+        description: 'Skilled in CSS3 including Flexbox, Grid layouts, responsive design, and CSS variables. Focused on creating clean, maintainable stylesheets.'
+      },
+      'sql': {
+        title: 'SQL',
+        description: 'Experience with SQL for database queries, table design, and data management. Worked with SQLite and familiar with relational database concepts.'
+      },
+      'django': {
+        title: 'Django',
+        description: 'Built web applications using Django framework including URL routing, template system, ORM for database operations, and user authentication.'
+      },
+      'react': {
+        title: 'React',
+        description: 'Developed interactive user interfaces using React with functional components, hooks (useState, useEffect), and component-based architecture.'
+      },
+      'nodejs': {
+        title: 'Node.js',
+        description: 'Experience building server-side applications with Node.js, handling HTTP requests, working with npm packages, and creating RESTful APIs.'
+      },
+      'express': {
+        title: 'Express.js',
+        description: 'Used Express.js to build backend APIs, handle routing, middleware implementation, and connect to databases for full-stack applications.'
+      },
+      'git': {
+        title: 'Git',
+        description: 'Proficient with Git version control including branching, merging, resolving conflicts, and maintaining clean commit history.'
+      },
+      'github': {
+        title: 'GitHub',
+        description: 'Experience using GitHub for code hosting, collaboration, pull requests, and project management. Familiar with GitHub Actions for CI/CD.'
+      },
+      'vscode': {
+        title: 'VS Code',
+        description: 'Primary development environment with customized settings, extensions for productivity, debugging tools, and integrated terminal usage.'
+      },
+      'mongodb': {
+        title: 'MongoDB',
+        description: 'Experience with MongoDB NoSQL database for storing and querying document-based data. Used with Node.js applications using Mongoose ODM.'
+      },
+      'sqlite': {
+        title: 'SQLite',
+        description: 'Worked with SQLite as a lightweight database solution for development and smaller applications, particularly with Django projects.'
+      },
+      'problem-solving': {
+        title: 'Problem Solving',
+        description: 'Strong analytical skills to break down complex problems into manageable parts. Approach challenges systematically and find efficient solutions.'
+      },
+      'team-collaboration': {
+        title: 'Team Collaboration',
+        description: 'Effective team player with experience working on group projects. Good at sharing ideas, giving feedback, and supporting team members.'
+      },
+      'communication': {
+        title: 'Communication',
+        description: 'Clear and concise communication skills for explaining technical concepts. Comfortable presenting ideas and documenting work effectively.'
+      },
+      'time-management': {
+        title: 'Time Management',
+        description: 'Ability to prioritize tasks, meet deadlines, and balance multiple responsibilities. Use planning and organization to stay productive.'
+      }
+    };
+
+    document.querySelectorAll('.skill-item').forEach(item => {
+      item.addEventListener('click', function () {
+        const skillKey = this.getAttribute('data-skill');
+        const skill = skillDescriptions[skillKey];
+
+        if (skill) {
+          document.getElementById('modalTitle').textContent = skill.title;
+          document.getElementById('modalDescription').textContent = skill.description;
+          document.getElementById('skillModal').classList.add('active');
+
+          document.querySelectorAll('.skill-item').forEach(s => s.classList.remove('selected'));
+          this.classList.add('selected');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
