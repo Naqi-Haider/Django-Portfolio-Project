@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Naqi Haider - Personal Portfolio Website">
+    <title>{% block title %}Naqi Haider | Portfolio{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="{% url 'home' %}" class="navbar-brand">Naqi Haider</a>
+            <ul class="navbar-nav">
+                <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
+                <li><a href="{% url 'education' %}" class="{% if request.resolver_match.url_name == 'education' %}active{% endif %}">Education</a></li>
+                <li><a href="{% url 'skills' %}" class="{% if request.resolver_match.url_name == 'skills' %}active{% endif %}">Skills</a></li>
+                <li><a href="{% url 'experience' %}" class="{% if request.resolver_match.url_name == 'experience' %}active{% endif %}">Experience</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Naqi Haider | F2022266523</p>
+    </footer>
+</body>
+</html>
