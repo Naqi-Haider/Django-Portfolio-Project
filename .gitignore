@@ -40,3 +40,7 @@ media/
 # OS
 .DS_Store
 Thumbs.db
+
+# Submission files (not tracked in repo)
+SUBMISSION.md
+SUBMISSION.docx
