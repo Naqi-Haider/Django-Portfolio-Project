@@ -4,7 +4,7 @@
 
 {% block content %}
 <section class="page-section">
-  <h1 class="section-title">Experience & Projects</h1>
+  <h1 class="section-title">Experience</h1>
 
   {% if is_admin %}
   <div class="admin-actions">
@@ -15,8 +15,8 @@
   {% for exp in experience_list %}
   <div class="content-item">
     <h3 class="item-title">{{ exp.title }}</h3>
-    <p class="item-subtitle">{{ exp.subtitle }}</p>
-    <p class="item-date">{{ exp.date }}</p>
+    <p class="item-subtitle">{{ exp.organization }} ({{ exp.get_experience_type_display }})</p>
+    <p class="item-date">{{ exp.start_date }} - {{ exp.end_date }}</p>
     <p class="item-description">{{ exp.description }}</p>
     {% if is_admin %}
     <div class="item-actions">

@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ action }} Education | Admin{% endblock %}
+
+{% block content %}
+<section class="page-section">
+  <h1 class="section-title">{{ action }} Education</h1>
+
+  <form method="post" class="admin-form">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="id_title">Degree/Title</label>
+      {{ form.title }}
+    </div>
+
+    <div class="form-group">
+      <label for="id_institution">Institution</label>
+      {{ form.institution }}
+    </div>
+
+    <div class="form-group">
+      <label for="id_date_range">Date Range</label>
+      {{ form.date_range }}
+      <small>e.g., "2022 - Present" or "2018 - 2020"</small>
+    </div>
+
+    <div class="form-group">
+      <label for="id_description">Description</label>
+      {{ form.description }}
+    </div>
+
+    <div class="form-group">
+      <label for="id_order">Display Order</label>
+      {{ form.order }}
+      <small>Lower numbers appear first</small>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-save">Save</button>
+      <a href="{% url 'admin_dashboard' %}" class="btn-cancel">Cancel</a>
+    </div>
+  </form>
+</section>
+
+<style>
+  .admin-form {
+    max-width: 600px;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--primary-color);
+  }
+
+  .form-group small {
+    display: block;
+    margin-top: 0.25rem;
+    color: #666;
+    font-size: 0.85rem;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    font-size: 1rem;
+  }
+
+  .form-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .btn-save {
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .btn-cancel {
+    padding: 0.75rem 1.5rem;
+    background: #6c757d;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+</style>
+{% endblock %}

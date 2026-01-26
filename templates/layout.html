@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +9,32 @@
     <title>{% block title %}Naqi Haider | Portfolio{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
+
 <body>
     <nav class="navbar">
         <div class="navbar-container">
             <a href="{% url 'home' %}" class="navbar-brand">Naqi Haider</a>
             <ul class="navbar-nav">
-                <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
-                <li><a href="{% url 'education' %}" class="{% if request.resolver_match.url_name == 'education' %}active{% endif %}">Education</a></li>
-                <li><a href="{% url 'skills' %}" class="{% if request.resolver_match.url_name == 'skills' %}active{% endif %}">Skills</a></li>
-                <li><a href="{% url 'experience' %}" class="{% if request.resolver_match.url_name == 'experience' %}active{% endif %}">Experience</a></li>
+                <li><a href="{% url 'home' %}"
+                        class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
+                <li><a href="{% url 'education_list' %}"
+                        class="{% if request.resolver_match.url_name == 'education_list' %}active{% endif %}">Education</a>
+                </li>
+                <li><a href="{% url 'skills_list' %}"
+                        class="{% if request.resolver_match.url_name == 'skills_list' %}active{% endif %}">Skills</a>
+                </li>
+                <li><a href="{% url 'experience_list' %}"
+                        class="{% if request.resolver_match.url_name == 'experience_list' %}active{% endif %}">Experience</a>
+                </li>
+                <li><a href="{% url 'projects_list' %}"
+                        class="{% if request.resolver_match.url_name == 'projects_list' %}active{% endif %}">Projects</a>
+                </li>
+                <li class="nav-divider"></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'admin_dashboard' %}" class="btn-admin">Dashboard</a></li>
+                {% else %}
+                <li><a href="{% url 'admin_login' %}" class="btn-admin">Admin Login</a></li>
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -30,4 +48,5 @@
         <p>&copy; 2025 Naqi Haider | F2022266523</p>
     </footer>
 </body>
+
 </html>

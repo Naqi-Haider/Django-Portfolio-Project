@@ -1,0 +1,260 @@
+{% extends "layout.html" %}
+
+{% block title %}Admin Dashboard | Naqi Haider{% endblock %}
+
+{% block content %}
+<section class="page-section">
+  <h1 class="section-title">Admin Dashboard</h1>
+
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+  {% endfor %}
+  {% endif %}
+
+  <div class="dashboard-grid">
+    <!-- Profile Section -->
+    <div class="dashboard-card">
+      <h3>Profile / Bio</h3>
+      <p>{% if profile %}{{ profile.name }}{% else %}Not set{% endif %}</p>
+      <div class="card-actions">
+        <a href="{% url 'edit_profile' %}" class="btn-edit">Edit Profile</a>
+      </div>
+    </div>
+
+    <!-- Education Section -->
+    <div class="dashboard-card">
+      <h3>Education</h3>
+      <p>{{ education_count }} entries</p>
+      <div class="card-actions">
+        <a href="{% url 'add_education' %}" class="btn-add">Add New</a>
+      </div>
+      <ul class="item-list">
+        {% for edu in profile.education_set.all %}
+        <li>
+          {{ edu.title }}
+          <a href="{% url 'edit_education' edu.pk %}" class="btn-sm">Edit</a>
+          <a href="{% url 'delete_education' edu.pk %}" class="btn-sm btn-danger">Delete</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Skills Section -->
+    <div class="dashboard-card">
+      <h3>Skills</h3>
+      <p>{{ skills_count }} skills</p>
+      <div class="card-actions">
+        <a href="{% url 'add_skill' %}" class="btn-add">Add New</a>
+      </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="dashboard-card">
+      <h3>Experience</h3>
+      <p>{{ experience_count }} entries</p>
+      <div class="card-actions">
+        <a href="{% url 'add_experience' %}" class="btn-add">Add New</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-sections">
+    <!-- Education List -->
+    <div class="dashboard-section">
+      <h2>Education Entries</h2>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Institution</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for edu in education_list %}
+          <tr>
+            <td>{{ edu.title }}</td>
+            <td>{{ edu.institution }}</td>
+            <td>{{ edu.date_range }}</td>
+            <td>
+              <a href="{% url 'edit_education' edu.pk %}">Edit</a>
+              <a href="{% url 'delete_education' edu.pk %}">Delete</a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4">No education entries yet.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Skills List -->
+    <div class="dashboard-section">
+      <h2>Skills</h2>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for skill in skills_list %}
+          <tr>
+            <td>{{ skill.name }}</td>
+            <td>{{ skill.get_category_display }}</td>
+            <td>
+              <a href="{% url 'edit_skill' skill.pk %}">Edit</a>
+              <a href="{% url 'delete_skill' skill.pk %}">Delete</a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="3">No skills yet.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Experience List -->
+    <div class="dashboard-section">
+      <h2>Experience</h2>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for exp in experience_list %}
+          <tr>
+            <td>{{ exp.title }}</td>
+            <td>{{ exp.subtitle }}</td>
+            <td>{{ exp.date }}</td>
+            <td>
+              <a href="{% url 'edit_experience' exp.pk %}">Edit</a>
+              <a href="{% url 'delete_experience' exp.pk %}">Delete</a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4">No experience entries yet.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="dashboard-actions">
+    <a href="{% url 'admin_logout' %}" class="btn-logout">Logout</a>
+  </div>
+</section>
+
+<style>
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .dashboard-card {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 1.5rem;
+  }
+
+  .dashboard-card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color);
+  }
+
+  .dashboard-card p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .btn-edit,
+  .btn-add {
+    padding: 0.5rem 1rem;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .btn-edit:hover,
+  .btn-add:hover {
+    opacity: 0.9;
+  }
+
+  .dashboard-sections {
+    margin-top: 2rem;
+  }
+
+  .dashboard-section {
+    margin-bottom: 2rem;
+  }
+
+  .dashboard-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+  }
+
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .admin-table th {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+  }
+
+  .admin-table a {
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+  }
+
+  .btn-logout {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: #dc3545;
+    color: white;
+    text-decoration: none;
+    margin-top: 1rem;
+  }
+
+  .alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+</style>
+{% endblock %}

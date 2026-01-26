@@ -4,17 +4,17 @@
 
 {% block content %}
 <section class="page-section hero">
-  {% if profile %}
+  {% if bio %}
   <div class="hero-content">
-    <h1 class="hero-title">{{ profile.name }}</h1>
-    <p class="hero-subtitle">{{ profile.title }}</p>
-    <p class="hero-description">{{ profile.description }}</p>
+    <h1 class="hero-title">{{ bio.name }}</h1>
+    <p class="hero-subtitle">{{ bio.job_title }}</p>
+    <p class="hero-description">{{ bio.description }}</p>
     {% if is_admin %}
-    <a href="{% url 'edit_profile' %}" class="btn-edit-inline">Edit Profile</a>
+    <a href="{% url 'edit_bio' %}" class="btn-edit-inline">Edit Bio</a>
     {% endif %}
   </div>
   <div class="hero-image">
-    <img src="{{ profile.image_url|default:'https://github.com/Naqi-Haider.png' }}" alt="{{ profile.name }}">
+    <img src="{{ bio.profile_picture|default:'https://github.com/Naqi-Haider.png' }}" alt="{{ bio.name }}">
   </div>
   {% else %}
   <div class="hero-content">
@@ -23,10 +23,9 @@
     <p class="hero-description">
       A passionate software developer with expertise in web technologies and a strong foundation in computer science.
       Dedicated to creating efficient, scalable, and user-friendly applications.
-      Currently pursuing BS in Computer Science with a focus on full-stack development and modern web technologies.
     </p>
     {% if is_admin %}
-    <a href="{% url 'edit_profile' %}" class="btn-edit-inline">Create Profile</a>
+    <a href="{% url 'edit_bio' %}" class="btn-edit-inline">Create Bio</a>
     {% endif %}
   </div>
   <div class="hero-image">

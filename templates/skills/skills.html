@@ -18,8 +18,7 @@
         <h3 class="item-title">Programming Languages</h3>
         <div class="skills-list">
           {% for skill in skills_by_category.programming %}
-          <span class="skill-item" data-skill="{{ skill.name|lower|slugify }}"
-            data-description="{{ skill.description }}">
+          <span class="skill-item" data-description="{{ skill.description }}">
             {{ skill.name }}
             {% if is_admin %}<a href="{% url 'edit_skill' skill.pk %}" class="skill-edit">✎</a>{% endif %}
           </span>
@@ -33,8 +32,7 @@
         <h3 class="item-title">Frameworks & Libraries</h3>
         <div class="skills-list">
           {% for skill in skills_by_category.frameworks %}
-          <span class="skill-item" data-skill="{{ skill.name|lower|slugify }}"
-            data-description="{{ skill.description }}">
+          <span class="skill-item" data-description="{{ skill.description }}">
             {{ skill.name }}
             {% if is_admin %}<a href="{% url 'edit_skill' skill.pk %}" class="skill-edit">✎</a>{% endif %}
           </span>
@@ -48,8 +46,7 @@
         <h3 class="item-title">Tools & Technologies</h3>
         <div class="skills-list">
           {% for skill in skills_by_category.tools %}
-          <span class="skill-item" data-skill="{{ skill.name|lower|slugify }}"
-            data-description="{{ skill.description }}">
+          <span class="skill-item" data-description="{{ skill.description }}">
             {{ skill.name }}
             {% if is_admin %}<a href="{% url 'edit_skill' skill.pk %}" class="skill-edit">✎</a>{% endif %}
           </span>
@@ -63,8 +60,7 @@
         <h3 class="item-title">Soft Skills</h3>
         <div class="skills-list">
           {% for skill in skills_by_category.soft %}
-          <span class="skill-item" data-skill="{{ skill.name|lower|slugify }}"
-            data-description="{{ skill.description }}">
+          <span class="skill-item" data-description="{{ skill.description }}">
             {{ skill.name }}
             {% if is_admin %}<a href="{% url 'edit_skill' skill.pk %}" class="skill-edit">✎</a>{% endif %}
           </span>
