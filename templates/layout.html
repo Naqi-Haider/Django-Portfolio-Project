@@ -34,7 +34,6 @@
                 <li><a href="{% url 'projects_list' %}"
                         class="{% if request.resolver_match.url_name == 'projects_list' %}active{% endif %}">Projects</a>
                 </li>
-                <li class="nav-divider"></li>
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'admin_dashboard' %}" class="btn-admin">Dashboard</a></li>
                 {% else %}
