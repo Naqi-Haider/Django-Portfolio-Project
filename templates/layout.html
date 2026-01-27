@@ -14,7 +14,12 @@
     <nav class="navbar">
         <div class="navbar-container">
             <a href="{% url 'home' %}" class="navbar-brand">Naqi Haider</a>
-            <ul class="navbar-nav">
+            <button class="navbar-toggle" id="navbar-toggle" aria-label="Toggle navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <ul class="navbar-nav" id="navbar-nav">
                 <li><a href="{% url 'home' %}"
                         class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
                 <li><a href="{% url 'education_list' %}"
@@ -47,6 +52,37 @@
     <footer class="footer">
         <p>&copy; 2025 Naqi Haider | F2022266523</p>
     </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const navbarToggle = document.getElementById('navbar-toggle');
+        const navbarNav = document.getElementById('navbar-nav');
+        
+        navbarToggle.addEventListener('click', function() {
+            navbarNav.classList.toggle('active');
+            navbarToggle.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const navLinks = navbarNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navbarNav.classList.remove('active');
+                navbarToggle.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = navbarNav.contains(event.target);
+            const isClickOnToggle = navbarToggle.contains(event.target);
+            
+            if (!isClickInsideNav && !isClickOnToggle && navbarNav.classList.contains('active')) {
+                navbarNav.classList.remove('active');
+                navbarToggle.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 
 </html>
