@@ -76,3 +76,6 @@ urlpatterns = [
     path('experience/', include('experience.urls')),
     path('projects/', include('projects.urls')),
 ]
+
+
+"""urls.py for ProjectPortfolio"""
